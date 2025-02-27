@@ -25,12 +25,14 @@ with center_col:
     import streamlit as st
 
     st.markdown("<h1 style='text-align: center;'>Informe sobre la Transición Energética</h1>", unsafe_allow_html=True)
-    st.write("""
-En este espacio, VA EL OBJETIVO PRINCIPAL.
+    st.markdown("<h2 style='text-align: left;'>Objetivo General: </h2>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="text-align: justify;">
+        Identificar el comportamiento de la generación eléctrica de siete diferentes fuentes de energía en Colombia para el periodo 2006-2023.
+    </div>
+    """, unsafe_allow_html=True)
 
-             ACÁ DEBERÍAN DE IR LOS DEMÁS OBJETIVOS (SI APLICA).
-            """)
     imagen5 = Image.open("Media\col.jpg")
     st.image(imagen5, use_container_width=False, width=900,
-             caption="INTEGRANTES DEL EQUIPO"
+             caption="León Bello - Edwin Duqeu - Nicólas Duque - Dayan Gaviria"
              )

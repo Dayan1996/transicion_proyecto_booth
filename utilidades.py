@@ -10,10 +10,11 @@ def generarMenu():
     with st.sidebar:
         col1, col2 = st.columns(2)
         with col1:
-            imagen1 = Image.open("Media\ladron.jpeg")
-            st.image(imagen1, use_container_width=False, width=800)
-        with col2:
-            st.header('Ladrón Dimayor Liga Bet Play 2024')
+            st.header('Menu')
+            ##imagen1 = Image.open("Media\ladron.jpeg")
+            ##st.image(imagen1, use_container_width=False, width=800)
+        ##with col2:
+            ##st.header('Ladrón Dimayor Liga Bet Play 2024')
             ##imagen2 = Image.open("Media\ladron.jpeg")
             ##st.image(imagen2, use_container_width=False, width=800)
         ''' with col3:
@@ -23,7 +24,9 @@ def generarMenu():
             imagen4 = Image.open("Media\dimayor.jpg")
             st.image(imagen4)'''
         st.page_link('app.py', label='Home', icon='🏠')
-        st.page_link('Pages\informe.py', label='Informe', icon='💯')
+        st.page_link('Pages\metodologia.py', label='Methodology', icon='🌐')
+        st.page_link('Pages\informe.py', label='Report', icon='📊')
+        
 
 def visualizardata(df,titulo):
     data_col = df[df['country'] == 'Colombia']
@@ -67,7 +70,7 @@ def visualizardata(df,titulo):
         ax.grid(color='gray', linestyle='dashdot', linewidth=0.4)  # Rejilla sutil
         ax.set_title("Evolución del Mix Energético en Colombia", fontsize=14, fontweight='bold', color='white')
         ax.set_xlabel("Año", fontsize=12, color='white')
-        ax.set_ylabel("Porcentaje de Energía", fontsize=12, color='white')
+        ax.set_ylabel("Electricidad Generada  [TWH]", fontsize=12, color='white')
         ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=12, frameon=True)
         ax.tick_params(axis='both', colors='white')  # Color de los números en ejes
         ax.set_xticks(np.arange(data_col1['year'].min(), data_col1['year'].max() + 1, 1))  # Configurar la grilla para que aparezca cada año
@@ -75,7 +78,7 @@ def visualizardata(df,titulo):
         ax.set_yticks(np.arange(0, 100, 10))  # Configurar la grilla para que aparezca
         ax.set_yticklabels([str(y) if y % 20 == 0 else "" for y in (np.arange(0, 100, 10))], rotation=0)  # Configurar etiquetas
 
-
+        st.info('Prueba texro')
         # Mostrar gráfico
         st.pyplot(plt)
 
@@ -95,11 +98,13 @@ def visualizardata(df,titulo):
 
         # Graficar en un solo pie chart
         plt.figure(figsize=(8, 8))
-        total_per_year.plot(kind='pie', autopct='%1.1f%%', cmap="viridis")
+        total_per_year.plot(kind='pie', autopct='%1.1f%%', cmap="Blues")
 
         # Configuración del gráfico
         plt.title('Distribución total de electricidad por año')
         plt.ylabel('')  # Ocultar etiqueta del eje Y
+        plt.style.use('dark_background')
+        sns.set_palette("muted")
 
         st.pyplot(plt)
 
@@ -111,7 +116,7 @@ def visualizardata(df,titulo):
         st.pyplot(plt)
 
         plt.style.use('dark_background')
-        sns.set_palette("bright")  # Colores vibrantes
+        sns.set_palette("dark")  # Colores vibrantes
 
         # Crear la figura y el eje
         fig, ax = plt.subplots(figsize=(12, 6))
@@ -135,4 +140,39 @@ def visualizardata(df,titulo):
          # Mostrar gráfico
         st.pyplot(plt)
 
-        st.write(col)
+        st.write(data_col1)
+
+        # Definir colores personalizados para cada fuente de energía
+        colores = ["#003f5c", "#808080", "#665191", "#a05195", "#d45087", "#f95d6a", "#FFD700", "#ffa600"]
+        #colores=['#ff7f0e', '#808080', '#2ca02c', '#9467bd', '#B22222', '#FFD700', '#ADD8E6', '#1f77b4']
+
+        # Crear la figura
+        fig, ax4 = plt.subplots(figsize=(10, 6))
+
+        # Inicializar la acumulación de valores en 0
+        apil = 0
+
+        # Crear las barras apiladas con colores personalizados
+        for i, col in enumerate(data_col1.columns[1:]):  # Excluir el año
+            bars = ax4.bar(data_col1['year'], data_col1[col],
+                        bottom=apil, label=col.replace("_share_elec", "").capitalize(),
+                        linewidth=2, color=colores[i % len(colores)])  # Asignar color
+
+            # Acumular valores para la siguiente iteración
+            apil += data_col1[col]
+
+        # Etiquetas y formato
+        ax4.set_ylabel("%")
+        ax4.set_title("Generación de Energía por Fuente en Colombia")
+        plt.xticks(rotation=45)
+
+        # Mover la leyenda fuera de la gráfica
+        ax4.legend(title="Fuente de Energía", bbox_to_anchor=(1.05, 1), loc='upper left')
+
+        # Ajustar diseño para evitar recortes
+        plt.tight_layout()
+
+        # Mostrar la gráfica
+        st.pyplot(plt)
+
+                
