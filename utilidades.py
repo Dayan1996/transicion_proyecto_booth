@@ -29,6 +29,8 @@ def generarMenu():
         
 
 def visualizardata(df,titulo):
+    imagen4 = Image.open("Media\correlation.jpg")
+    ##st.image(imagen4)
     data_col = df[df['country'] == 'Colombia']
     # selecciono solo la columna de year y las de share_elec
     data_col1 = data_col.filter(regex="year|share", axis=1)
@@ -70,7 +72,7 @@ def visualizardata(df,titulo):
         ax.grid(color='gray', linestyle='dashdot', linewidth=0.4)  # Rejilla sutil
         ax.set_title("Evolución del Mix Energético en Colombia", fontsize=14, fontweight='bold', color='white')
         ax.set_xlabel("Año", fontsize=12, color='white')
-        ax.set_ylabel("Electricidad Generada  [TWH]", fontsize=12, color='white')
+        ax.set_ylabel("Porcentaje de Energía", fontsize=12, color='white')
         ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=12, frameon=True)
         ax.tick_params(axis='both', colors='white')  # Color de los números en ejes
         ax.set_xticks(np.arange(data_col1['year'].min(), data_col1['year'].max() + 1, 1))  # Configurar la grilla para que aparezca cada año
@@ -78,9 +80,9 @@ def visualizardata(df,titulo):
         ax.set_yticks(np.arange(0, 100, 10))  # Configurar la grilla para que aparezca
         ax.set_yticklabels([str(y) if y % 20 == 0 else "" for y in (np.arange(0, 100, 10))], rotation=0)  # Configurar etiquetas
 
-        st.info('Prueba texro')
+        #st.info('Prueba texro')
         # Mostrar gráfico
-        st.pyplot(plt)
+        ##st.pyplot(plt)
 
         data_col2 = data_col.filter(regex="year|electricity", axis=1)
         data_col2 = data_col2[data_col2["year"] >= 2006]
@@ -113,7 +115,7 @@ def visualizardata(df,titulo):
         # Graficar en un solo pie chart
         plt.figure(figsize=(8, 8))
         total_per_year2.plot(kind='pie', autopct='%1.1f%%', cmap="viridis")
-        st.pyplot(plt)
+        ##st.pyplot(plt)
 
         plt.style.use('dark_background')
         sns.set_palette("dark")  # Colores vibrantes
@@ -130,7 +132,7 @@ def visualizardata(df,titulo):
         ax.grid(color='gray', linestyle='dashdot', linewidth=0.4)  # Rejilla sutil
         ax.set_title("Evolución del Mix Energético en Colombia", fontsize=14, fontweight='bold', color='white')
         ax.set_xlabel("Año", fontsize=12, color='white')
-        ax.set_ylabel("Porcentaje de Energía", fontsize=12, color='white')
+        ax.set_ylabel("Electricidad Generada  [TWH]", fontsize=12, color='white')
         ax.legend(loc="center left", bbox_to_anchor=(1.01, 0.5), fontsize=12, frameon=True)
         ax.tick_params(axis='both', colors='white')  # Color de los números en ejes
         ax.set_xticks(np.arange(data_col2['year'].min(), data_col2['year'].max() + 1, 1))  # Configurar la grilla para que aparezca cada año
@@ -140,7 +142,7 @@ def visualizardata(df,titulo):
          # Mostrar gráfico
         st.pyplot(plt)
 
-        st.write(data_col1)
+        ##st.write(data_col1)
 
         # Definir colores personalizados para cada fuente de energía
         colores = ["#003f5c", "#808080", "#665191", "#a05195", "#d45087", "#f95d6a", "#FFD700", "#ffa600"]

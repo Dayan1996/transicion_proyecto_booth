@@ -31,7 +31,7 @@ Metodología Procesamiento de Datos:
 
     """)
     st.write("""
-Dados los objetivos del estudio, donde se requirió una búsqueda de bases de datos de fuentes secundarias y descubrir relaciones entre las variables objeto de estudio, se usó el modelo KDD (Knowledge Discovery in Database), el cual es un proceso sistemático y metodológico diseñado para extraer conocimiento útil a partir de grandes volúmenes de datos, de manera gráfica (figura 1) se observan los pasos sugeridos en dicha metodología de procesamiento de datos. 
+Dados los objetivos del estudio, donde se requirió una búsqueda de bases de datos de fuentes secundarias y descubrir relaciones entre las variables objeto de estudio, se usó el modelo KDD (Knowledge Discovery in Database).
 
     """)
     imagen2 = Image.open("Media/kdd.jpg")
@@ -52,7 +52,7 @@ Dados los objetivos del estudio, donde se requirió una búsqueda de bases de da
     Fase 2: Limpieza de los datos.""")
 
     st.write("""
-    Utilizando las librerías ******, se eliminaron las variables que contenían valores perdidos, de igual manera, considerando los objetivos del estudio, se eliminaron las variables que no son útiles para el estudio y las que estaban duplicadas por su forma de cálculo original, en la sección códigos, se presentan los scripts correspondientes a la limpieza de datos.
+    Utilizando la librería Pandas, se eliminaron las variables que contenían valores perdidos, de igual manera, considerando los objetivos del estudio, se eliminaron las variables que no son útiles para el estudio y las que estaban duplicadas por su forma de cálculo original, en la sección *********, se presentan los scripts correspondientes a la limpieza de datos.
     Se realizó un análisis exploratorio de datos, con el fin de detectar errores de digitación, valores atípicos y/o extremos según la regla de Yates que se plasma en el gráfico de bigotes, además, de analizar las estadísticas descriptivas de resumen, contando el coeficiente de variación para mejor entendimiento de la variabilidad relativa de cada una de las variables continuas. Para las variables categóricas (país, …) se encontraron las frecuencias simples, sólo para identificar posibles comparaciones por país.
     """)
 

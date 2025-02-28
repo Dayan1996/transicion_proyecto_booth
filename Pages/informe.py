@@ -6,7 +6,7 @@ import seaborn as sns
 
 #configuramos encabezados de la pagina
 st.set_page_config(
-    page_title='Informe Liga',
+    page_title='Informe',
     page_icon='📊',
     initial_sidebar_state='expanded',
     layout='centered'
